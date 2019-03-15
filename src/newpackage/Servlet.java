@@ -17,20 +17,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
-    ArrayList<String> list = new ArrayList<>();
+   // ArrayList<String> list = new ArrayList<>();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServletContext sc=this.getServletContext();
-        String  s=request.getParameter("imie");
-        String  s2=request.getParameter("nazwisko");
-        String s3=s+" "+s2;
-
-        synchronized(getServletContext()){
-            list.add(s3);
-            sc.setAttribute("s3", list);
-        }
-        RequestDispatcher rd=request.getRequestDispatcher("/Servlet2");
-        rd.forward(request, response);
+//        ServletContext sc=this.getServletContext();
+//        String  s=request.getParameter("imie");
+//        String  s2=request.getParameter("nazwisko");
+//        String1 s3=s+" "+s2;
+//
+//        synchronized(getServletContext()){
+//            list.add(s3);
+//            sc.setAttribute("s3", list);
+//        }
+//        RequestDispatcher rd=request.getRequestDispatcher("/Servlet2");
+//        rd.forward(request, response);
 //        response.setContentType("text/html;charset=UTF-8");
 //        try (PrintWriter out = response.getWriter()) {
 //            out.println("<!DOCTYPE html>");
@@ -49,9 +50,7 @@ public class Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
-
+    //    processRequest(request, response);
 
 //              try (PrintWriter out = response.getWriter()) {
 //
@@ -80,28 +79,27 @@ public class Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-
-
-               try (PrintWriter out = response.getWriter()) {
-
-           out.print("loginPost= ");
-           out.println(request.getParameter("login"));
-           out.println("<br>");
-           out.print("passwordPost= ");
-           out.println(request.getParameter("password"));
-           out.println("<br>");
-           out.print("ImiePost= ");
-           out.println(request.getParameter("imie"));
-           out.println("<br>");
-           out.print("nazwiskoPost= ");
-           out.println(request.getParameter("nazwisko"));
-           out.println("<br>");
-           out.print("WiekPost= ");
-           out.println(request.getParameter("wiek"));
-           out.println("<br>");
-           out.print("zainteresowaniaPost= ");
-           out.println(request.getParameter("zainteresowania"));
-                }
-    }}
+   //     processRequest(request, response);
+//               try (PrintWriter out = response.getWriter()) {
+//
+//           out.print("loginPost= ");
+//           out.println(request.getParameter("login"));
+//           out.println("<br>");
+//           out.print("passwordPost= ");
+//           out.println(request.getParameter("password"));
+//           out.println("<br>");
+//           out.print("ImiePost= ");
+//           out.println(request.getParameter("imie"));
+//           out.println("<br>");
+//           out.print("nazwiskoPost= ");
+//           out.println(request.getParameter("nazwisko"));
+//           out.println("<br>");
+//           out.print("WiekPost= ");
+//           out.println(request.getParameter("wiek"));
+//           out.println("<br>");
+//           out.print("zainteresowaniaPost= ");
+//           out.println(request.getParameter("zainteresowania"));
+//                }
+    }
+}
 

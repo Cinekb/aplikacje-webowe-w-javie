@@ -25,26 +25,23 @@ public class Servlet2 extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet2</title>");
-            out.println("</head>");
-            out.println("<body>");
-            ServletContext sc=this.getServletContext();
-            ArrayList<String> list = new ArrayList<>();
-            list= (ArrayList)sc.getAttribute("s3");
-            for(int i=0;i<list.size();i++){
-                out.println("<p>"+(i+1)+". "+list.get(i) + "</p>");
-            }
-            out.println("</body>");
-            out.println("</html>");
-
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//             out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Servlet2</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            ServletContext sc=this.getServletContext();
+//            ArrayList<String> list = new ArrayList<>();
+//            list= (ArrayList)sc.getAttribute("s3");
+//            for(int i=0;i<list.size();i++){
+//                out.println("<p>"+(i+1)+". "+list.get(i) + "</p>");
+//            }
+//            out.println("</body>");
+//            out.println("</html>");
+//    }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
