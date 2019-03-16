@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,6 +42,9 @@ public class Servlet2 extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
 //    }
+        HttpSession session= request.getSession();
+        session.setAttribute("2",request.getServletPath());
+
     }
 
     @Override

@@ -3,13 +3,12 @@ package newpackage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  *
@@ -43,6 +42,8 @@ public class Servlet extends HttpServlet {
 //            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
+
+
     }
 
 
@@ -50,11 +51,10 @@ public class Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    //    processRequest(request, response);
+        //    processRequest(request, response);
 
-//              try (PrintWriter out = response.getWriter()) {
-//
-//           out.print("loginGet= ");
+        //     try (PrintWriter out = response.getWriter()) {
+        //       out.print("loginGet= ");
 //           out.println(request.getParameter("login"));
 //           out.println("<br>");
 //           out.print("passwordGet= ");
@@ -73,8 +73,55 @@ public class Servlet extends HttpServlet {
 //           out.println(request.getParameter("zainteresowania"));
 //
 //                 }
-    }
 
+        String name = request.getParameter("imie");
+        Cookie cookie = null;
+        try (PrintWriter out = response.getWriter()) {
+            response.setContentType("text/html");
+            Cookie[] cookies = request.getCookies();//pobranie tablicy z ciasteczkami
+        if(cookies!=null) {//sprawdzam czy tablica  nie jest pusta
+            for (int i = 0; i < cookies.length; i++) {//przeglądanie tablicy z ciasteczkami
+                cookie = cookies[i];
+                if (cookie.getName().equals("user1")) {
+                    break;
+                }
+            }
+        }else{
+            Cookie ck = new Cookie("user1", name);//tworze obiekt
+            ck.setMaxAge(-1);
+            response.addCookie(ck);
+            out.println("Ciasteczko zostalo utworzone, odswiez strone");
+
+        }
+
+            if (cookie.getName().equals("user1")) {
+                out.println("Witaj " + cookie.getValue());
+            }else{
+              Cookie ck = new Cookie("user1", name);
+              ck.setMaxAge(-1);
+              response.addCookie(ck);
+              out.println("Witaj gosciu");
+
+            }
+
+            HttpSession session=request.getSession();
+            session.setAttribute("0","localhost:8080/");
+            session.setAttribute("1","localhost:8080/"+request.getServletPath());
+            int i=0;
+            Enumeration enumeration=session.getAttributeNames();
+            while (enumeration.hasMoreElements()) {
+
+                String n = (String) enumeration.nextElement();
+                out.println("<a href='" + session.getAttribute(n) + "'>strona "+i+"</a>");
+                i++;
+            }
+            out.close();
+
+
+
+        }
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
