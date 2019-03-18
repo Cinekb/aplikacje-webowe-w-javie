@@ -43,7 +43,7 @@ public class Servlet2 extends HttpServlet {
 //            out.println("</html>");
 //    }
         HttpSession session= request.getSession();
-        session.setAttribute("2",request.getServletPath());
+        session.setAttribute("Servlet2",request.getServletPath());
 
     }
 

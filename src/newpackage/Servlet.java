@@ -16,7 +16,7 @@ import javax.servlet.http.*;
  */
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
-   // ArrayList<String> list = new ArrayList<>();
+    // ArrayList<String> list = new ArrayList<>();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -79,40 +79,40 @@ public class Servlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             response.setContentType("text/html");
             Cookie[] cookies = request.getCookies();//pobranie tablicy z ciasteczkami
-        if(cookies!=null) {//sprawdzam czy tablica  nie jest pusta
-            for (int i = 0; i < cookies.length; i++) {//przeglądanie tablicy z ciasteczkami
-                cookie = cookies[i];
-                if (cookie.getName().equals("user1")) {
-                    break;
+            if(cookies!=null) {//sprawdzam czy tablica  nie jest pusta
+                for (int i = 0; i < cookies.length; i++) {//przeglądanie tablicy z ciasteczkami
+                    cookie = cookies[i];
+                    if (cookie.getName().equals("user1")) {
+                        break;
+                    }
                 }
-            }
-        }else{
-            Cookie ck = new Cookie("user1", name);//tworze obiekt
-            ck.setMaxAge(-1);
-            response.addCookie(ck);
-            out.println("Ciasteczko zostalo utworzone, odswiez strone");
+            }else{
+                Cookie ck = new Cookie("user1", name);//tworze obiekt
+                ck.setMaxAge(-1);
+                response.addCookie(ck);
+                out.println("Ciasteczko zostalo utworzone, odswiez strone");
 
-        }
+            }
 
             if (cookie.getName().equals("user1")) {
                 out.println("Witaj " + cookie.getValue());
             }else{
-              Cookie ck = new Cookie("user1", name);
-              ck.setMaxAge(-1);
-              response.addCookie(ck);
-              out.println("Witaj gosciu");
+                Cookie ck = new Cookie("user1", name);
+                ck.setMaxAge(-1);
+                response.addCookie(ck);
+                out.println("Witaj gosciu");
 
             }
 
             HttpSession session=request.getSession();
-            session.setAttribute("0","localhost:8080/");
-            session.setAttribute("1","localhost:8080/"+request.getServletPath());
+            session.setAttribute("localhost:8080","localhost:8080");
+            session.setAttribute("Servlet","localhost:8080/"+request.getServletPath());
             int i=0;
             Enumeration enumeration=session.getAttributeNames();
             while (enumeration.hasMoreElements()) {
 
                 String n = (String) enumeration.nextElement();
-                out.println("<a href='" + session.getAttribute(n) + "'>strona "+i+"</a>");
+                out.println("<a href='" + session.getAttribute(n) + "'>"+n+"</a>");
                 i++;
             }
             out.close();
@@ -126,7 +126,7 @@ public class Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   //     processRequest(request, response);
+        //     processRequest(request, response);
 //               try (PrintWriter out = response.getWriter()) {
 //
 //           out.print("loginPost= ");
